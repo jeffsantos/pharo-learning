@@ -5,6 +5,28 @@ Class {
 }
 
 { #category : #tests }
+TBPostTest >> testCreatePostCategoryUnclassified [
+	| post | 
+	
+	post := TBPost title: 'Testing Post' text: 'This is a post just for test'.
+	self assert: post title equals: 'Testing Post'.
+	self assert: post text equals: 'This is a post just for test'.
+	self assert: post isUnclassified.
+	self deny: post isVisible 
+]
+
+{ #category : #tests }
+TBPostTest >> testCreatePostWithCategory [
+	| post | 
+	
+	post := (TBPost title: 'Title' text: 'Text' category: 'Category').
+	
+	self assert: post title equals: 'Title'.
+	self assert: post text equals: 'Text'.
+	self assert: post category equals: 'Category'
+]
+
+{ #category : #tests }
 TBPostTest >> testInitialize [
 	| post |
 	
