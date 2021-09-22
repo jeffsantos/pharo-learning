@@ -1,11 +1,11 @@
 Class {
-	#name : #TBPostTest2,
+	#name : #TBPostTest,
 	#superclass : #TestCase,
 	#category : #'TinyBlog-Tests'
 }
 
 { #category : #tests }
-TBPostTest2 >> testInitialize [
+TBPostTest >> testInitialize [
 	| post |
 	
 	post := TBPost new initialize.
