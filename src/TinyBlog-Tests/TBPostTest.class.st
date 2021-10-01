@@ -8,7 +8,10 @@ Class {
 TBPostTest >> testCreatePostCategoryUnclassified [
 	| post | 
 	
-	post := TBPost title: 'Testing Post' text: 'This is a post just for test'.
+	post := TBPost 
+				title: 'Testing Post' 
+				text: 'This is a post just for test'.
+				
 	self assert: post title equals: 'Testing Post'.
 	self assert: post text equals: 'This is a post just for test'.
 	self assert: post isUnclassified.
@@ -19,7 +22,10 @@ TBPostTest >> testCreatePostCategoryUnclassified [
 TBPostTest >> testCreatePostWithCategory [
 	| post | 
 	
-	post := (TBPost title: 'Title' text: 'Text' category: 'Category').
+	post := TBPost 
+				title: 'Title' 
+				text: 'Text' 
+				category: 'Category'.
 	
 	self assert: post title equals: 'Title'.
 	self assert: post text equals: 'Text'.
@@ -30,7 +36,7 @@ TBPostTest >> testCreatePostWithCategory [
 TBPostTest >> testInitialize [
 	| post |
 	
-	post := TBPost new initialize.
+	post := TBPost new.
 	self assert: post category equals: post class unclassifiedTag.
 	self assert: post date equals: Date today.
 	self assert: post visible equals: false.
