@@ -61,28 +61,28 @@ TBBlog class >> reset [
 	uniqueInstance := nil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #enumerating }
 TBBlog >> allBlogPosts [
 	^ posts
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #enumerating }
 TBBlog >> allBlogPostsFromCategory: aCategory [ 
 	^ posts select: [ :p | p category = aCategory ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #enumerating }
 TBBlog >> allCategories [
 	^ (self allBlogPosts collect: [ :p | p category ]) asSet
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #enumerating }
 TBBlog >> allVisibleBlogPosts [
 	^ posts select: [ :p | p isVisible ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #enumerating }
 TBBlog >> allVisibleBlogPostsFromCategory: aCategory [ 
 	^ posts select: [ :p | p category = aCategory 
 						and: [ p isVisible ] ]
