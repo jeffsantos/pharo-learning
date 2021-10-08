@@ -11,8 +11,13 @@ Class {
 DieHandle >> + aDieHandle [
 	| newHandle |
 	newHandle := self class new.
-	newHandle dice addAll: (self dice).
-	newHandle dice addAll: (aDieHandle dice).	
+	
+	"newHandle dice addAll: (self dice). - First attempt, violate good practice"
+	"newHandle dice addAll: (aDieHandle dice). - First attempt, violate good practice"	
+		
+	self dice do: [ :each | newHandle addDie: each ].
+	aDieHandle dice do: [ :each | newHandle addDie: each ].
+			
 	^ newHandle
 ]
 
