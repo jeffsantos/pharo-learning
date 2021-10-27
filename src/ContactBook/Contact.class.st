@@ -13,25 +13,6 @@ Class {
 	#category : #ContactBook
 }
 
-{ #category : #'instance initialization' }
-Contact class >> default [
-	^ self new
-		addContact: (self class
-							newNamed: 'Damien Cassou'
-							email: 'damien@cassou.me');
-		addContact: (self class
-							newNamed: 'Marcus Denker'
-							email: 'marcus.denker@inria.fr');
-		addContact: (self class
-							newNamed: 'Tudor Girba'
-							email: 'tudor@tudorgirba.com');
-		addContact: (self class
-							newNamed: 'Clara Allende'
-							email: 'clari.allende@gmail.com');
-		yourself
-
-]
-
 { #category : #'instance creation' }
 Contact class >> newNamed: aNameString email: anEmailString [
 	^ self new
@@ -62,6 +43,11 @@ Contact >> fullname [
 Contact >> fullname: anObject [
 
 	fullname := anObject
+]
+
+{ #category : #'as yet unclassified' }
+Contact >> gravatarUrl [
+	^ 'http://www.gravatar.com/avatar/', (MD5 hashMessage: email asString trimBoth asLowercase) hex, '.jpg'
 ]
 
 { #category : #printing }
