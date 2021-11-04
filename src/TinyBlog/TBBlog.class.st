@@ -4,13 +4,10 @@ Class {
 	#instVars : [
 		'posts'
 	],
-	#classInstVars : [
-		'uniqueInstance'
-	],
 	#category : #TinyBlog
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'default values' }
 TBBlog class >> createDemoPosts [
 "TBBlog createDemoPosts"
 	self current
@@ -44,21 +41,45 @@ TBBlog class >> createDemoPosts [
            desktop computers.' category: 'Pharo') visible: true)
 ]
 
-{ #category : #initialization }
+{ #category : #'class initialization' }
 TBBlog class >> current [
-	"answer the instance of the TBRepository"
-	
-	^ uniqueInstance ifNil: [ uniqueInstance := self new ]
+
+	^ self selectAll
+		  ifNotEmpty: [ :x | x anyOne ]
+		  ifEmpty: [ self new save ]
 ]
 
-{ #category : #initialization }
+{ #category : #'class initialization' }
 TBBlog class >> initialize [
 	self reset
 ]
 
-{ #category : #initialization }
+{ #category : #'class initialization' }
+TBBlog class >> initializeLocalhostMongoDB [
+	| repositoy |
+	repositoy := VOMongoRepository 
+						host: 'localhost'
+						port: 27017
+						database: 'tinyblog'.
+	repositoy enableSingleton.
+]
+
+{ #category : #'class initialization' }
+TBBlog class >> initializeVoyageOnMemoryDB [
+	VOMemoryRepository new enableSingleton
+]
+
+{ #category : #testing }
+TBBlog class >> isVoyageRoot [
+   "Indicates that instances of this class are top level documents
+    in noSQL databases"
+   ^ true
+]
+
+{ #category : #'class initialization' }
 TBBlog class >> reset [
-	uniqueInstance := nil
+	self initializeLocalhostMongoDB 
+
 ]
 
 { #category : #enumerating }
@@ -96,7 +117,8 @@ TBBlog >> initialize [
 
 { #category : #removing }
 TBBlog >> removeAllPosts [
-	posts := OrderedCollection new
+	posts := OrderedCollection new.
+	self save
 ]
 
 { #category : #removing }
@@ -106,6 +128,7 @@ TBBlog >> size [
 
 { #category : #removing }
 TBBlog >> writeBlogPost: aPost [
-	"Add the blog post to the list of posts."
-	posts add: aPost
+	"Write the blog post in database"
+	self allBlogPosts add: aPost.
+	self save
 ]
