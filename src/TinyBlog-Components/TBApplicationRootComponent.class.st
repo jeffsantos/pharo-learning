@@ -34,7 +34,7 @@ TBApplicationRootComponent >> children [
 { #category : #initialization }
 TBApplicationRootComponent >> initialize [ 
 	super initialize.
-	main := TBPostListComponent new.
+	main := TBPostsListComponent new.
 ]
 
 { #category : #accessing }
