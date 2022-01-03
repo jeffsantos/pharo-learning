@@ -8,6 +8,14 @@ Class {
 	#category : #'TinyBlog-Components'
 }
 
+{ #category : #rendering }
+TBPostsListComponent >> categoriesComponent [
+
+	^ TBCategoriesComponent
+		  categories: self blog allCategories
+		  postsListComponent: self
+]
+
 { #category : #hook }
 TBPostsListComponent >> children [ 
 	^ self postComponents, super children  
@@ -32,10 +40,17 @@ TBPostsListComponent >> initialize [
 ]
 
 { #category : #initialization }
+TBPostsListComponent >> postComponentFor: aPost [
+
+	^ TBPostComponent new post: aPost
+]
+
+{ #category : #initialization }
 TBPostsListComponent >> postComponents [
+
 	postComponents := self readSelectedPosts collect: [ :each | 
-		TBPostComponent new post: each ].
-	^ postComponents 
+		                  self postComponentFor: each ].
+	^ postComponents
 ]
 
 { #category : #enumerating }
@@ -51,18 +66,16 @@ TBPostsListComponent >> renderContentOn: html [
 	super renderContentOn: html.
 	html container: [ 
 		html row with: [ 
-			html column 
+			html column
 				extraSmallSize: 12;
 				smallSize: 2;
-            mediumSize:  4;
-				with: [ html render: (TBCategoriesComponent
-				 						categories: self blog allCategories
-				 						postsListComponent: self) ].			
+				mediumSize: 4;
+				with: [ html render: self categoriesComponent ].
 			html column
 				extraSmallSize: 12;
 				smallSize: 10;
-            mediumSize:  8;			 
-				with: [ html container: [ self postComponents do: [ :pc | html render: pc ] ] ]			
-		 ]
-	]
+				mediumSize: 8;
+				with: [ 
+					html container: [ 
+							self postComponents do: [ :pc | html render: pc ] ] ] ] ]
 ]

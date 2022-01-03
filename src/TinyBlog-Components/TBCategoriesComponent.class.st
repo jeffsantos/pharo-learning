@@ -39,7 +39,7 @@ TBCategoriesComponent >> postsListComponent: aComponent [
 TBCategoriesComponent >> renderCategoryLinkOn: html with: aCategory [
 
 	html listGroupLinkedItem
-		class: 'active' if: aCategory = self postsListComponent currentCategory;
+		beActiveIf: aCategory = self postsListComponent currentCategory;
 		callback: [ self selectCategory: aCategory ];
 		with: aCategory
 ]
