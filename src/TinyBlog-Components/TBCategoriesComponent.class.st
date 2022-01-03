@@ -12,7 +12,7 @@ Class {
 TBCategoriesComponent class >> categories: categories postsListComponent: aTBScreenComponent [
 	^ self new 
 		categories: categories;
-		postsList: aTBScreenComponent
+		postsListComponent: aTBScreenComponent
 ]
 
 { #category : #accessing }
@@ -26,12 +26,12 @@ TBCategoriesComponent >> categories: aCollection [
 ]
 
 { #category : #accessing }
-TBCategoriesComponent >> postsList [
+TBCategoriesComponent >> postsListComponent [
 	^ postsListComponent 
 ]
 
 { #category : #accessing }
-TBCategoriesComponent >> postsList: aComponent [
+TBCategoriesComponent >> postsListComponent: aComponent [
 	postsListComponent := aComponent 
 ]
 
@@ -39,6 +39,7 @@ TBCategoriesComponent >> postsList: aComponent [
 TBCategoriesComponent >> renderCategoryLinkOn: html with: aCategory [
 
 	html listGroupLinkedItem
+		class: 'active' if: aCategory = self postsListComponent currentCategory;
 		callback: [ self selectCategory: aCategory ];
 		with: aCategory
 ]
