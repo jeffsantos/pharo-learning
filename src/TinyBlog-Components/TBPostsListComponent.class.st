@@ -47,12 +47,22 @@ TBPostsListComponent >> readSelectedPosts [
 
 { #category : #rendering }
 TBPostsListComponent >> renderContentOn: html [
+
 	super renderContentOn: html.
-	html render: (TBCategoriesComponent 
-						categories: (self blog allCategories) 
-						postsListComponent: self).	
 	html container: [ 
-		self postComponents do: [ :pc | 
-			html render: pc ]
+		html row with: [ 
+			html column 
+				extraSmallSize: 12;
+				smallSize: 2;
+            mediumSize:  4;
+				with: [ html render: (TBCategoriesComponent
+				 						categories: self blog allCategories
+				 						postsListComponent: self) ].			
+			html column
+				extraSmallSize: 12;
+				smallSize: 10;
+            mediumSize:  8;			 
+				with: [ html container: [ self postComponents do: [ :pc | html render: pc ] ] ]			
 		 ]
+	]
 ]
