@@ -9,6 +9,18 @@ Class {
 }
 
 { #category : #rendering }
+TBPostsListComponent >> basicRenderCategoriesOn: html [
+
+	html render: self categoriesComponent
+]
+
+{ #category : #rendering }
+TBPostsListComponent >> basicRenderPostOn: html [
+
+	self postComponents do: [ :pc | html render: pc ]
+]
+
+{ #category : #rendering }
 TBPostsListComponent >> categoriesComponent [
 
 	^ TBCategoriesComponent
@@ -61,21 +73,31 @@ TBPostsListComponent >> readSelectedPosts [
 ]
 
 { #category : #rendering }
+TBPostsListComponent >> renderCategoryColumnOn: html [
+
+	html column
+		extraSmallSize: 12;
+		smallSize: 2;
+		mediumSize: 4;
+		with: [ self basicRenderCategoriesOn: html ]
+]
+
+{ #category : #rendering }
 TBPostsListComponent >> renderContentOn: html [
 
 	super renderContentOn: html.
 	html container: [ 
 		html row with: [ 
-			html column
-				extraSmallSize: 12;
-				smallSize: 2;
-				mediumSize: 4;
-				with: [ html render: self categoriesComponent ].
-			html column
-				extraSmallSize: 12;
-				smallSize: 10;
-				mediumSize: 8;
-				with: [ 
-					html container: [ 
-							self postComponents do: [ :pc | html render: pc ] ] ] ] ]
+			self renderCategoryColumnOn: html.
+			self renderPostColumnOn: html ] ]
+]
+
+{ #category : #rendering }
+TBPostsListComponent >> renderPostColumnOn: html [
+
+	html column
+		extraSmallSize: 12;
+		smallSize: 10;
+		mediumSize: 8;
+		with: [ self basicRenderPostOn: html ]
 ]
