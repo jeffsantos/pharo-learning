@@ -56,12 +56,12 @@ TBBlog class >> initialize [
 
 { #category : #'class initialization' }
 TBBlog class >> initializeLocalhostMongoDB [
-	| repositoy |
-	repositoy := VOMongoRepository 
+	| repository |
+	repository := VOMongoRepository 
 						host: 'localhost'
 						port: 27017
 						database: 'tinyblog'.
-	repositoy enableSingleton.
+	repository enableSingleton.
 ]
 
 { #category : #'class initialization' }
@@ -78,7 +78,7 @@ TBBlog class >> isVoyageRoot [
 
 { #category : #'class initialization' }
 TBBlog class >> reset [
-	self initializeLocalhostMongoDB 
+	self initializeLocalhostMongoDB   
 
 ]
 
