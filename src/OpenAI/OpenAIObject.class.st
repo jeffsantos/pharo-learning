@@ -8,6 +8,16 @@ Class {
 }
 
 { #category : #accessing }
+OpenAIObject >> gtPropertiesFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'Properties';
+		priority: 10;
+		object: [ rawData ];
+		view: #gtItemsFor:
+]
+
+{ #category : #accessing }
 OpenAIObject >> rawData [
 	^ rawData
 ]

@@ -43,14 +43,14 @@ OpenAIService >> models [
 				
 	models :=  (STON fromString: json) at: 'data'.
 	
-	^ models collect: [ :each | OpenAIObject new rawData: each ]
+	^ models collect: [ :each | OAIModel new rawData: each ]
 	
 ]
 
 { #category : #accessing }
 OpenAIService >> prompt: promptString model: modelString [
 
-	| endPoint message messages entityDict entityStr json choices |
+	| endPoint message messages entityDict entityStr json choices dict |
 
 	endPoint := 'chat/completions'.
 	
@@ -73,10 +73,15 @@ OpenAIService >> prompt: promptString model: modelString [
 			               type: ZnMimeType applicationJson);
 	   		post.
 	   
-	choices := (STON fromString: json) at: 'choices'.
+	dict := (STON fromString: json).
 	
-	^ (choices at: 1) at: 'message' at: 'content'.
+	^ OAIChatCompletion new rawData: dict.
 	
+]
+
+{ #category : #accessing }
+OpenAIService >> promptGpt35: promptString [
+	^ self prompt: promptString model: 'gpt-3.5-turbo'
 ]
 
 { #category : #accessing }

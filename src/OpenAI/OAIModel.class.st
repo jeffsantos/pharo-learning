@@ -1,5 +1,5 @@
 Class {
-	#name : #OpenAIModel,
+	#name : #OAIModel,
 	#superclass : #OpenAIObject,
 	#category : #OpenAI
 }
