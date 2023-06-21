@@ -37,7 +37,7 @@ TBApplicationRootComponent >> initialize [
 	main := TBPostsListComponent new.
 ]
 
-{ #category : #accessing }
+{ #category : #rendering }
 TBApplicationRootComponent >> main: aComponent [
 	main := aComponent 
 ]

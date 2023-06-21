@@ -5,6 +5,6 @@ Class {
 }
 
 { #category : #accessing }
-OAIChatCompletion >> defaultMessage [
+OAIChatCompletion >> response [
 	^ ((self rawData at: 'choices') at: 1) at: 'message' at: 'content'.
 ]

@@ -48,19 +48,14 @@ OpenAIService >> models [
 ]
 
 { #category : #accessing }
-OpenAIService >> prompt: promptString model: modelString [
+OpenAIService >> prompt: conversation model: modelString [
 
-	| endPoint message messages entityDict entityStr json choices dict |
+	| endPoint entityDict entityStr json dict |
 
 	endPoint := 'chat/completions'.
 	
-	message := {'role' -> 'user'.
-				   'content'-> promptString} asDictionary.
-				
-	messages := { message }.
-	
 	entityDict := {'model' ->  modelString.
-				   'messages' -> messages.
+				   'messages' -> conversation messages asArray.
 				   'temperature' -> 0} asDictionary.
 	
 	entityStr := NeoJSONWriter toStringPretty:entityDict.
@@ -72,7 +67,7 @@ OpenAIService >> prompt: promptString model: modelString [
 			               with: entityStr
 			               type: ZnMimeType applicationJson);
 	   		post.
-	   
+	
 	dict := (STON fromString: json).
 	
 	^ OAIChatCompletion new rawData: dict.
@@ -80,8 +75,8 @@ OpenAIService >> prompt: promptString model: modelString [
 ]
 
 { #category : #accessing }
-OpenAIService >> promptGpt35: promptString [
-	^ self prompt: promptString model: 'gpt-3.5-turbo'
+OpenAIService >> promptGpt35: conversation [
+	^ self prompt: conversation model: 'gpt-3.5-turbo'
 ]
 
 { #category : #accessing }
