@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'messages'
 	],
-	#category : #OpenAI
+	#category : #'JBS-OpenAI'
 }
 
 { #category : #adding }

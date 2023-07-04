@@ -1,7 +1,7 @@
 Class {
 	#name : #OAIChatCompletion,
 	#superclass : #OpenAIObject,
-	#category : #OpenAI
+	#category : #'JBS-OpenAI'
 }
 
 { #category : #accessing }

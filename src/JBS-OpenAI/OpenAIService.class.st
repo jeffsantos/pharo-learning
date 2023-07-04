@@ -5,7 +5,7 @@ Class {
 		'urlBase',
 		'apiKey'
 	],
-	#category : #OpenAI
+	#category : #'JBS-OpenAI'
 }
 
 { #category : #'instance creation' }

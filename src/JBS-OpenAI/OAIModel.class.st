@@ -1,5 +1,5 @@
 Class {
 	#name : #OAIModel,
 	#superclass : #OpenAIObject,
-	#category : #OpenAI
+	#category : #'JBS-OpenAI'
 }

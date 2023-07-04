@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'rawData'
 	],
-	#category : #OpenAI
+	#category : #'JBS-OpenAI'
 }
 
 { #category : #accessing }
