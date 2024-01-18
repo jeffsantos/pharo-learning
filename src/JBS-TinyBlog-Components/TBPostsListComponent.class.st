@@ -28,7 +28,7 @@ TBPostsListComponent >> categoriesComponent [
 		  postsListComponent: self
 ]
 
-{ #category : #hook }
+{ #category : #hooks }
 TBPostsListComponent >> children [ 
 	^ self postComponents, super children  
 ]

@@ -78,7 +78,7 @@ TBBlog class >> isVoyageRoot [
 
 { #category : #'class initialization' }
 TBBlog class >> reset [
-	self initializeLocalhostMongoDB   
+	self initializeVoyageOnMemoryDB    
 
 ]
 
