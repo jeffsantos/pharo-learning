@@ -18,8 +18,6 @@ BaselineOfPharoLearning >> baseline: spec [
 				package: 'JBS-MyCounter-Tests';
 				package: 'JBS-NeuralNetwork';
 				package: 'JBS-NeuralNetwork-Tests';
-				package: 'JBS-OpenAI';
-				package: 'JBS-TinyBlog';
-				package: 'JBS-TinyBlog-Tests'				
+				package: 'JBS-OpenAI'
 		]
 ]
