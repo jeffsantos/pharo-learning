@@ -79,6 +79,11 @@ OpenAIService >> promptGpt35: conversation [
 	^ self prompt: conversation model: 'gpt-3.5-turbo'
 ]
 
+{ #category : #'as yet unclassified' }
+OpenAIService >> promptGpt4o: conversation [
+	^ self prompt: conversation model: 'chatgpt-4o-latest'
+]
+
 { #category : #accessing }
 OpenAIService >> urlBase [
 	^ urlBase
