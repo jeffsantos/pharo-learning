@@ -1,14 +1,15 @@
 Class {
-	#name : #ChatGPTRoot,
-	#superclass : #SBSComponent,
+	#name : 'ChatGPTRoot',
+	#superclass : 'SBSComponent',
 	#instVars : [
 		'conversation',
 		'openai'
 	],
-	#category : #'JBS-OpenaAI-ChatGPT'
+	#category : 'JBS-OpenaAI-ChatGPT',
+	#package : 'JBS-OpenaAI-ChatGPT'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 ChatGPTRoot class >> initialize [
 	"Register the class with its route (url)"
 
@@ -18,28 +19,31 @@ ChatGPTRoot class >> initialize [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'private - actions' }
 ChatGPTRoot >> askGPT [
 
 	| completion |
 	
-	completion := openai promptGpt35: conversation.
+	completion := openai promptGpt4o: conversation.
 	
 	^ completion response.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ChatGPTRoot >> conversation [
 	^ conversation ifNil: [ conversation := Conversation new ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ChatGPTRoot >> initialize [ 
+	| token | 
 	super initialize.
-	openai := OpenAIService createWithKey: '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'.
+	
+	token := (FileLocator home / '.secrets/open-ai-api-key.txt') contents allButLast.
+	openai := OpenAIService createWithKey: token.
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 ChatGPTRoot >> renderContentOn: html [
 	"Main entry point of the view. Render a title."
 	
@@ -63,7 +67,7 @@ ChatGPTRoot >> renderContentOn: html [
 		html span with: (self conversation lastMessage).
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 ChatGPTRoot >> updateRoot: anHtmlRoot [
     super updateRoot: anHtmlRoot.
     anHtmlRoot title: 'ChatGPT in Pharo'

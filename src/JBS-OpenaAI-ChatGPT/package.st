@@ -1,1 +1,1 @@
-Package { #name : #'JBS-OpenaAI-ChatGPT' }
+Package { #name : 'JBS-OpenaAI-ChatGPT' }
