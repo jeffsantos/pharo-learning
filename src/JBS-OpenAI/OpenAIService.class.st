@@ -30,7 +30,7 @@ OpenAIService >> initialize [
 	self urlBase: 'https://api.openai.com/v1/'
 ]
 
-{ #category : #accessing }
+{ #category : #querying }
 OpenAIService >> models [
 	| json endPoint models |
 	
@@ -47,7 +47,7 @@ OpenAIService >> models [
 	
 ]
 
-{ #category : #accessing }
+{ #category : #conversation }
 OpenAIService >> prompt: conversation model: modelString [
 
 	| endPoint entityDict entityStr json dict |
@@ -74,14 +74,19 @@ OpenAIService >> prompt: conversation model: modelString [
 	
 ]
 
-{ #category : #accessing }
+{ #category : #conversation }
 OpenAIService >> promptGpt35: conversation [
 	^ self prompt: conversation model: 'gpt-3.5-turbo'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #conversation }
 OpenAIService >> promptGpt4o: conversation [
 	^ self prompt: conversation model: 'chatgpt-4o-latest'
+]
+
+{ #category : #conversation }
+OpenAIService >> promptGpt4oMini: conversation [
+	^ self prompt: conversation model: 'gpt-4o-mini'
 ]
 
 { #category : #accessing }
