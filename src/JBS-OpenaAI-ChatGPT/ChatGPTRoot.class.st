@@ -24,7 +24,7 @@ ChatGPTRoot >> askGPT [
 
 	| completion |
 	
-	completion := openai promptGpt4o: conversation.
+	completion := openai promptGpt4oMini: conversation.
 	
 	^ completion response.
 ]
