@@ -31,6 +31,24 @@ Neuron >> feed: inputs [
 		  ifFalse: [ 0 ]
 ]
 
+{ #category : #views }
+Neuron >> gtBiasFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'Bias';
+		object: [ self bias ];
+		view: #gtPreviewFor:
+]
+
+{ #category : #views }
+Neuron >> gtWeightsFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'Weights';
+		object: [ self weights ];
+		view: #gtItemsFor:
+]
+
 { #category : #initialization }
 Neuron >> initialize [ 
 	super initialize. 
@@ -44,23 +62,23 @@ Neuron >> learningRate [
 ]
 
 { #category : #accessing }
-Neuron >> learningRate: aNumber [
+Neuron >> learningRate: aLearningRateAsFloat [
 
-	learningRate := aNumber
+	learningRate := aLearningRateAsFloat
 ]
 
 { #category : #computation }
 Neuron >> train: inputs desiredOutput: desiredOutput [
-
 	| theError output newWeight |
+	
 	output := self feed: inputs.
 	theError := desiredOutput - output.
 	inputs withIndexDo: [ :anInput :index | 
-									newWeight := (weights at: index)
-		             							+ (learningRate * theError * anInput).
-									weights at: index put: newWeight ].
+							newWeight := ((weights at: index)
+		             						+ (learningRate * theError * anInput)) round:2.
+							weights at: index put: newWeight ].
 						
-	bias := bias + (learningRate * theError)
+	bias := (bias + (learningRate * theError)) round:2
 ]
 
 { #category : #accessing }
