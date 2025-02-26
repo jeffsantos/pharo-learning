@@ -103,7 +103,7 @@ PerceptronExample >> digitalComparator: inputs [
 
 { #category : #private }
 PerceptronExample >> newNeuron [
-	^ Neuron new
+	^ Perceptron new
 ]
 
 { #category : #example }

@@ -10,13 +10,13 @@ PerceptronTest >> createDigitalComparator: inputs [
 	
 	a := inputs first.
 	b := inputs second.
-	and := Neuron new
+	and := Perceptron new
 		       weights: #( 1 1 );
 		       bias: -1.5.
-	not := Neuron new
+	not := Perceptron new
 		       weights: #( -1 );
 		       bias: 0.5.
-	nor := Neuron new
+	nor := Perceptron new
 		       weights: #( -1 -1 );
 		       bias: 0.5.
 		
@@ -41,7 +41,7 @@ PerceptronTest >> testDigitalComparator [
 PerceptronTest >> testWrongFeeding [
 
 	| p |
-	p := Neuron new.
+	p := Perceptron new.
 	p weights: #( -1 ).
 	p bias: 0.5.
 	self should: [ p feed: #( 1 1 ) ] raise: Error
