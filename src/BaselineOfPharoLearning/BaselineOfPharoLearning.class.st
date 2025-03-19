@@ -16,8 +16,6 @@ BaselineOfPharoLearning >> baseline: spec [
 				package: 'JBS-Dice-Tests';
 				package: 'JBS-MyCounter';
 				package: 'JBS-MyCounter-Tests';
-				package: 'JBS-NeuralNetwork';
-				package: 'JBS-NeuralNetwork-Tests';
 				package: 'JBS-OpenAI'
 		]
 ]
